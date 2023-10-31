@@ -4,7 +4,15 @@ function Category({ categories, onCategoryCreated }) {
     const [categoryName, setCategoryName] = useState('');
     const [categoryDescription, setCategoryDescription] = useState('');
 
-    const handleCategorySubmit = () => {
+    const handleCategorySubmit = (e) => {
+        e.preventDefault(); // Prevent the default form submission
+
+        if (categoryName.trim() === '' || categoryDescription.trim() === '') {
+            // Check if any of the fields is empty
+            alert('Please fill out all fields.');
+            return;
+        }
+
         const categoryData = {
             name: categoryName,
             description: categoryDescription,
@@ -22,28 +30,30 @@ function Category({ categories, onCategoryCreated }) {
     }
 
     return (
-        <div>
+        <div className="container">
             <h1>New category creation form</h1>
-            <form>
-                <div>
-                    <label htmlFor="categoryName">Category Name:</label>
+            <form onSubmit={handleCategorySubmit}>
+                <div className="mb-3">
                     <input
                         type="text"
-                        id="categoryName"
+                        className="form-control"
+                        placeholder="Category Name"
                         value={categoryName}
                         onChange={(e) => setCategoryName(e.target.value)}
+                        required // This makes the field required
                     />
                 </div>
-                <div>
-                    <label htmlFor="categoryDescription">Category Description:</label>
+                <div className="mb-3">
                     <input
                         type="text"
-                        id="categoryDescription"
+                        className="form-control"
+                        placeholder="Category Description"
                         value={categoryDescription}
                         onChange={(e) => setCategoryDescription(e.target.value)}
+                        required // This makes the field required
                     />
                 </div>
-                <button type="button" onClick={handleCategorySubmit}>
+                <button type="submit" className="btn btn-primary">
                     Submit
                 </button>
             </form>

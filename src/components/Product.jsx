@@ -7,13 +7,33 @@ function Product({ categories }) {
     const [productQuantity, setProductQuantity] = useState('');
     const [productPrice, setProductPrice] = useState('');
 
-    const handleProductSubmit = () => {
+    const handleProductSubmit = (e) => {
+        e.preventDefault(); // Prevent the default form submission
+
+        if (
+            productName.trim() === '' ||
+            productDescription.trim() === '' ||
+            productCategory.trim() === '' ||
+            productQuantity.trim() === '' ||
+            productPrice.trim() === ''
+        ) {
+            // Check if any of the fields is empty
+            alert('Please fill out all fields.');
+            return;
+        }
+
+        if (productQuantity < 0 || productPrice < 0) {
+            // Check if quantity or price is less than 0
+            alert('Quantity and price must be non-negative.');
+            return;
+        }
+
         const productData = {
             name: productName,
             description: productDescription,
             category: productCategory,
             quantity: productQuantity,
-            price: productPrice,
+            price: parseFloat(productPrice), // Convert the price to a float
         };
 
         // Log product data as JSON
@@ -30,35 +50,37 @@ function Product({ categories }) {
     };
 
     return (
-        <div>
+        <div className="container">
             <h1>New product creation form</h1>
-            <form>
-                <div>
-                    <label htmlFor="productName">Product Name:</label>
+            <form onSubmit={handleProductSubmit}>
+                <div className="mb-3">
                     <input
                         type="text"
-                        id="productName"
+                        className="form-control"
+                        placeholder="Product Name"
                         value={productName}
                         onChange={(e) => setProductName(e.target.value)}
+                        required // This makes the field required
                     />
                 </div>
-                <div>
-                    <label htmlFor="productDescription">Product Description:</label>
+                <div className="mb-3">
                     <input
                         type="text"
-                        id="productDescription"
+                        className="form-control"
+                        placeholder="Product Description"
                         value={productDescription}
                         onChange={(e) => setProductDescription(e.target.value)}
+                        required // This makes the field required
                     />
                 </div>
-                <div>
-                    <label htmlFor="productCategory">Category:</label>
+                <div className="mb-3">
                     <select
-                        id="productCategory"
+                        className="form-select"
                         value={productCategory}
                         onChange={(e) => setProductCategory(e.target.value)}
+                        required // This makes the field required
                     >
-                        <option value="">Select a category</option>
+                        <option value="">Select a Category</option>
                         {categories.map((category, index) => (
                             <option key={index} value={category.name}>
                                 {category.name}
@@ -66,26 +88,31 @@ function Product({ categories }) {
                         ))}
                     </select>
                 </div>
-                <div>
-                    <label htmlFor="productQuantity">Quantity:</label>
+                <div className="mb-3">
                     <input
                         type="number"
-                        id="productQuantity"
+                        className="form-control"
+                        placeholder="Quantity"
                         value={productQuantity}
                         onChange={(e) => setProductQuantity(e.target.value)}
+                        required // This makes the field required
+                        min="0" // Set the minimum value to 0
                     />
                 </div>
-                <div>
-                    <label htmlFor="productPrice">Price:</label>
+                <div className="mb-3">
                     <input
                         type="number"
-                        inputMode="numeric"
-                        id="productPrice"
+                        inputMode="decimal"
+                        step="0.01" // Specify step interval for 2 decimal places
+                        className="form-control"
+                        placeholder="Price"
                         value={productPrice}
                         onChange={(e) => setProductPrice(e.target.value)}
+                        required // This makes the field required
+                        min="0" // Set the minimum value to 0
                     />
                 </div>
-                <button type="button" onClick={handleProductSubmit}>
+                <button type="submit" className="btn btn-primary">
                     Submit
                 </button>
             </form>

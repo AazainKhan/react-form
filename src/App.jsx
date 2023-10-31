@@ -12,10 +12,14 @@ function App() {
 
   return (
     <>
-      <div class="forms">
-        <Category categories={categories} onCategoryCreated={handleCategoryCreated} />
-        <Product categories={categories} />
-        <div class="footer">
+      <div className="forms">
+        <div className="category">
+          <Category categories={categories} onCategoryCreated={handleCategoryCreated} />
+        </div>
+        <div className="product">
+          <Product categories={categories} />
+        </div>
+        <div className="footer">
           <p>Created by Aazain Ullah Khan - 301277063 - COMP 229</p>
         </div>
       </div>
