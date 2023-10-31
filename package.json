@@ -1,6 +1,7 @@
 {
   "name": "react-form",
   "private": true,
+  "author": "Aazain Ullah Khan",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

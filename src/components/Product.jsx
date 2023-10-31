@@ -39,8 +39,6 @@ function Product({ categories }) {
         // Log product data as JSON
         console.log('New product added to inventory', productData);
 
-        // You can store the product data in a state variable or send it to an API, database, etc.
-
         // Clear input fields after submission
         setProductName('');
         setProductDescription('');
@@ -60,7 +58,7 @@ function Product({ categories }) {
                         placeholder="Product Name"
                         value={productName}
                         onChange={(e) => setProductName(e.target.value)}
-                        required // This makes the field required
+                        required 
                     />
                 </div>
                 <div className="mb-3">
@@ -70,7 +68,7 @@ function Product({ categories }) {
                         placeholder="Product Description"
                         value={productDescription}
                         onChange={(e) => setProductDescription(e.target.value)}
-                        required // This makes the field required
+                        required 
                     />
                 </div>
                 <div className="mb-3">
@@ -78,7 +76,7 @@ function Product({ categories }) {
                         className="form-select"
                         value={productCategory}
                         onChange={(e) => setProductCategory(e.target.value)}
-                        required // This makes the field required
+                        required 
                     >
                         <option value="">Select a Category</option>
                         {categories.map((category, index) => (
@@ -95,7 +93,7 @@ function Product({ categories }) {
                         placeholder="Quantity"
                         value={productQuantity}
                         onChange={(e) => setProductQuantity(e.target.value)}
-                        required // This makes the field required
+                        required 
                         min="0" // Set the minimum value to 0
                     />
                 </div>
@@ -103,12 +101,12 @@ function Product({ categories }) {
                     <input
                         type="number"
                         inputMode="decimal"
-                        step="0.01" // Specify step interval for 2 decimal places
+                        step="0.01" 
                         className="form-control"
                         placeholder="Price"
                         value={productPrice}
                         onChange={(e) => setProductPrice(e.target.value)}
-                        required // This makes the field required
+                        required 
                         min="0" // Set the minimum value to 0
                     />
                 </div>

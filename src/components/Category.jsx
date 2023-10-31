@@ -18,10 +18,8 @@ function Category({ categories, onCategoryCreated }) {
             description: categoryDescription,
         };
 
-        // Log category data as JSON and store it somewhere (e.g., in a state variable)
         console.log('New category created', categoryData);
 
-        // Pass the category data to the parent component
         onCategoryCreated(categoryData);
 
         // Clear input fields after submission
@@ -40,7 +38,7 @@ function Category({ categories, onCategoryCreated }) {
                         placeholder="Category Name"
                         value={categoryName}
                         onChange={(e) => setCategoryName(e.target.value)}
-                        required // This makes the field required
+                        required 
                     />
                 </div>
                 <div className="mb-3">
@@ -50,7 +48,7 @@ function Category({ categories, onCategoryCreated }) {
                         placeholder="Category Description"
                         value={categoryDescription}
                         onChange={(e) => setCategoryDescription(e.target.value)}
-                        required // This makes the field required
+                        required 
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">
